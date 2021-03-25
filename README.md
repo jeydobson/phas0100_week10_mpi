@@ -1,7 +1,9 @@
-# PHAS0100 Week 10 MPI exercises
+# PHAS0100 Week 10 exercises: OpenMPI
 Repository with exercises for PHAS0100 week 10 live class. 
 
-The relevant apt-get install commands for OpenMPI libraries have been added to the https://github.com/UCL/rc-cpp-vscode-dev-container but if you are using an older version and want to install the openmpi libraries in a running container then you can run the following:
+### Environment setup
+
+For convenience this repository includes an updated .devcontainer/Dockerfile with the relevant apt-get install commands for OpenMPI libraries included. If you are using your own Dockerfile or are not using Docker at all then you can install the openmpi libraries (on Ubuntu 20.04) with:
 ``` shell
 apt-get update
 apt-get install openmpi-bin libopenmpi-dev
@@ -13,4 +15,8 @@ mpiexec --version
 mpicxx --version
 ```
 
-In-code HANDSON comments indicate where changes need to be made to complete the tasks for each of the four tasks.
+### Completing the exercises
+
+See the class HackMD document for detailed steps:
+* In-code HANDSON comments indicate where changes need to be made to complete the tasks for each of the four tasks.
+* To speed up compilation comment out relevant add_subdirectory commands in the top-level CMakeLists.txt file to speed up compilation when working on one exercise.
