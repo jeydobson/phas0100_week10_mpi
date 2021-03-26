@@ -15,6 +15,22 @@ mpiexec --version
 mpicxx --version
 ```
 
+### Compilation
+
+Examples are not tested with VS Code's CMake Tools extension so you should run cmake manually from the terminal
+``` shell
+mkdir build
+cd build
+cmake -DCMAKE_CXX_COMPILER=mpixx ..
+make
+```
+and to run an example
+``` shell
+mpiexec ./build/hello
+mpiexec -n 4 ./build/hello
+mpiexec --oversubscribe -n 4 ./build/hello
+```
+
 ### Completing the exercises
 
 See the class HackMD document for detailed steps:
