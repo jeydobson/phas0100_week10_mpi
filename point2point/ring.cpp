@@ -27,55 +27,49 @@ TEST_CASE("Ring communications") {
     SECTION("Blocking synchronous") {
 
       if (rank % 2 == 0) {
-        int error = MPI_Ssend(
-          &message, 1, MPI_INT, left, rank, MPI_COMM_WORLD);
-        REQUIRE(error == MPI_SUCCESS);
+        // HANDSON 3.2: implement MPI_Ssend to send message from current process to the one on its left
+        // make sure to include a unit test REQUIRE to check the return code
 
-        error = MPI_Recv(
-          &received, 1, MPI_INT, right, right, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
-        REQUIRE(error == MPI_SUCCESS);
+        // HANDSON 3.3: implement MPI_Recv for this process to recieve message from process on right
+        // make sure to include a unit test REQUIRE to check the return code
       }
       if (rank % 2 == 1) {
+        // HANDSON 3.4: as above implement MPI_Recv first
 
-        int error = MPI_Recv(
-          &received, 1, MPI_INT, right, right, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
-        REQUIRE(error == MPI_SUCCESS);
+        // HANDSON 3.5: then MPI_Ssend
 
-        error = MPI_Ssend(
-          &message, 1, MPI_INT, left, rank, MPI_COMM_WORLD);
-        REQUIRE(error == MPI_SUCCESS);
+        // HANDSON 3.6: try swapping the order of 3.4 and 3.5. Why is the order important and what are the consequences?
       }
+      // This check should pass when 3.2-3.5 are implemented
       REQUIRE( received == right*right );
     }
 
     SECTION("Asynchronous") {
-      MPI_Request send_req;
-      // Everyone sets up their messages to send
-      int error = MPI_Isend(
-        &message, 1, MPI_INT, left, rank, MPI_COMM_WORLD, &send_req);
-      REQUIRE(error == MPI_SUCCESS);
 
-      // Recv acts as our sync-barrier
-      error = MPI_Recv(
-        &received, 1, MPI_INT, right, right, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
-      REQUIRE(error == MPI_SUCCESS);
+      MPI_Request send_req;
+      // HANDSON 4.1: now use MPI_Isend to send for all processes
+      // remember to pass it a reference to the send_req below
+
+      // HANDSON 4.2: now setup a MPI_Recv. This will act 
+      // as the sync-barrier
 
       // But let's check our send completed:
       int completed;
-      error = MPI_Test(&send_req, &completed, MPI_STATUS_IGNORE);
-      REQUIRE(error ==  MPI_SUCCESS);
-      REQUIRE(completed == true);
+      // HANDSON 4.3: implement an MPI_Test to check whether the send 
+      // completed based on the MPI_Request send_req handle and pass it
+      // a reference to int completed to fill the result into. 
+      // Because MPI_Recv as a sync-barrier completed should always be true.
 
+      // This check should pass when 4.3-4.3 are implemented
       REQUIRE( received == right*right );
     }
 
       SECTION("Sendreceive") {
-        int error = MPI_Sendrecv(
-          &message, 1, MPI_INT, left, rank,
-          &received, 1, MPI_INT, right, right,
-          MPI_COMM_WORLD, MPI_STATUS_IGNORE);
-        REQUIRE(error ==  MPI_SUCCESS);
 
+        // HANDSON 4.1: use MPI_Sendrecv to achieve the same as above but now in a 
+        // single command
+
+        // Once 4.1 is implemented this check should pass
         REQUIRE( received == right*right );
     }
 }
