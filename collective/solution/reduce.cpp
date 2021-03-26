@@ -22,9 +22,10 @@ TEST_CASE("Collective communications reduce") {
         sign = -sign;
       }
       double result;
-      // HANDSON 7.2: use the MPI_Reduce method to sum the results from each process
-      // to calculate pi
-
+      int const error = MPI_Reduce(
+        &my_result, &result, 1 /* size */, MPI_DOUBLE,
+        MPI_SUM /* op */, 0 /* root */, MPI_COMM_WORLD);
+      REQUIRE(error == MPI_SUCCESS);
       if (rank == 0) {
         double abs_err = fabs(result * 4.0 - M_PI);
         CHECK(abs_err < 0.001);
