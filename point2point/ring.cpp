@@ -1,7 +1,8 @@
 #include <mpi.h>
+// Next line tells CATCH we will use our own main function
 #define CATCH_CONFIG_RUNNER
 #include "catch.hpp"
-s
+
 TEST_CASE("Ring communications") {
 
     int rank, size;
