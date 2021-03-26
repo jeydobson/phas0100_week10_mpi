@@ -6,5 +6,5 @@ include_directories(${MPI_CXX_INCLUDE_PATH})
 
 include_directories(catch)
 add_subdirectory(hello)
-add_subdirectory(point2point)
-add_subdirectory(collective)
+#add_subdirectory(point2point)
+#add_subdirectory(collective)

@@ -1,5 +1,3 @@
-add_executable(hello hello.cpp)
-target_link_libraries(hello ${MPI_CXX_LIBRARIES})
+# HANDSON 1.4: add commands to compile hello.cpp
 
-add_executable(helloCatch helloCatch.cpp)
-target_link_libraries(helloCatch ${MPI_CXX_LIBRARIES})
+# HANDSON 2.1: add commands to compile helloCatch.cpp
