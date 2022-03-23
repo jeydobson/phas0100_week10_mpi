@@ -1,1 +1,1 @@
-# HANDSON 4.1: add commands to compile ring.cpp
+# EXERCISE 4.1: add commands to compile ring.cpp

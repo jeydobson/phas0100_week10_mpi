@@ -21,22 +21,22 @@ Examples are not tested with VS Code's CMake Tools extension so you should run c
 ``` shell
 mkdir build
 cd build
-cmake -DCMAKE_CXX_COMPILER=mpixx ..
+cmake ..
 make
 ```
 and to run an example
 ``` shell
 mpiexec ./build/hello
 mpiexec -n 4 ./build/hello
-mpiexec --oversubscribe -n 4 ./build/hello
+mpiexec --oversubscribe -n 100 ./build/hello
 ```
 
 ### Completing the exercises
 
 See the class HackMD document for detailed steps:
-* In-code HANDSON comments indicate where changes need to be made to complete the tasks for each of the four tasks.
-* To speed up compilation comment out relevant add_subdirectory commands in the top-level CMakeLists.txt file to speed up compilation when working on one exercise.
+* In-code EXERCISE comments indicate where changes need to be made to complete the tasks for each of the four tasks.
+* To speed up compilation comment out relevant `add_subdirectory` commands in the top-level CMakeLists.txt file to speed up compilation when working on one exercise.
 * Order of tasks:
    * `hello`
-   * `point2point`
    * `collective`
+   * `point2point`
