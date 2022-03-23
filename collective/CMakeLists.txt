@@ -1,3 +1,3 @@
-# HANDSON 6.1: add commands to compile ring.cpp
+# EXERCISE 3.1: add commands to compile ring.cpp
 
-# HANDSON 7.1: add commands to compile ring.cpp
+# EXERCISE 4.1: add commands to compile ring.cpp

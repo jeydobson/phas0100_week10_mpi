@@ -22,7 +22,7 @@ TEST_CASE("Collective communications reduce") {
         sign = -sign;
       }
       double result;
-      // HANDSON 4.2: use the MPI_Reduce method to sum the results from each process
+      // EXERCISE 4.2: use the MPI_Reduce method to sum the results from each process
       // to calculate pi
 
       if (rank == 0) {

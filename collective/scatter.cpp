@@ -14,7 +14,7 @@ TEST_CASE("Collective communications") {
       int N = message.size() / size;
 
       char buffer[256];
-      // HANDSON 3.2: use the MPI_Scatter method to split the message across all processes
+      // EXERCISE 3.2: use the MPI_Scatter method to split the message across all processes
  
       CHECK(message.substr(rank*N, N) == std::string(buffer, N));
     }

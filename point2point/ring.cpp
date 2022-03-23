@@ -27,18 +27,18 @@ TEST_CASE("Ring communications") {
     SECTION("Blocking synchronous") {
 
       if (rank % 2 == 0) {
-        // HANDSON 5.2: implement MPI_Ssend to send message from current process to the one on its left
+        // EXERCISE 5.2: implement MPI_Ssend to send message from current process to the one on its left
         // make sure to include a unit test REQUIRE to check the return code
 
-        // HANDSON 5.3: implement MPI_Recv for this process to recieve message from process on right
+        // EXERCISE 5.3: implement MPI_Recv for this process to recieve message from process on right
         // make sure to include a unit test REQUIRE to check the return code
       }
       if (rank % 2 == 1) {
-        // HANDSON 5.4: as above implement MPI_Recv first
+        // EXERCISE 5.4: as above implement MPI_Recv first
 
-        // HANDSON 5.5: then MPI_Ssend
+        // EXERCISE 5.5: then MPI_Ssend
 
-        // HANDSON 5.6: try swapping the order of 5.4 and 5.5. Why is the order important and what are the consequences?
+        // EXERCISE 5.6: try swapping the order of 5.4 and 5.5. Why is the order important and what are the consequences?
       }
       // This check should pass when 5.2-5.5 are implemented
       REQUIRE( received == right*right );
@@ -47,15 +47,15 @@ TEST_CASE("Ring communications") {
     SECTION("Asynchronous") {
 
       MPI_Request send_req;
-      // HANDSON 6.1: now use MPI_Isend to send for all processes
+      // EXERCISE 6.1: now use MPI_Isend to send for all processes
       // remember to pass it a reference to the send_req below
 
-      // HANDSON 6.2: now setup a MPI_Recv. This will act 
+      // EXERCISE 6.2: now setup a MPI_Recv. This will act 
       // as the sync-barrier
 
       // But let's check our send completed:
       int completed;
-      // HANDSON 6.3: implement an MPI_Test to check whether the send 
+      // EXERCISE 6.3: implement an MPI_Test to check whether the send 
       // completed based on the MPI_Request send_req handle and pass it
       // a reference to int completed to fill the result into. 
       // Because MPI_Recv as a sync-barrier completed should always be true.
@@ -66,7 +66,7 @@ TEST_CASE("Ring communications") {
 
       SECTION("Sendreceive") {
 
-        // HANDSON 7.1: use MPI_Sendrecv to achieve the same as above but now in a 
+        // EXERCISE 7.1: use MPI_Sendrecv to achieve the same as above but now in a 
         // single command
 
         // Once 7.1 is implemented this check should pass
