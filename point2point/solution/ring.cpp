@@ -26,6 +26,7 @@ TEST_CASE("Ring communications") {
 
     SECTION("Blocking synchronous") {
 
+      // HANDSON 5 solution
       if (rank % 2 == 0) {
         int error = MPI_Ssend(
           &message, 1, MPI_INT, left, rank, MPI_COMM_WORLD);
@@ -45,7 +46,7 @@ TEST_CASE("Ring communications") {
           &message, 1, MPI_INT, left, rank, MPI_COMM_WORLD);
         REQUIRE(error == MPI_SUCCESS);
 
-        // HANDSON 3.6:
+        // HANDSON 5.6:
         // The order of these MPI_Recv and MPI_Ssend commands matters. 
         // MPI_Ssend is synchonous blocking so will get deadlock if it occurs before 
         // the MPI_Recv command: both even and odd processes will MPI_Ssend and wait for 
@@ -55,6 +56,7 @@ TEST_CASE("Ring communications") {
     }
 
     SECTION("Asynchronous") {
+      // HANDSON 6 solution:
       MPI_Request send_req;
       // Everyone sets up their messages to send
       int error = MPI_Isend(
@@ -76,6 +78,7 @@ TEST_CASE("Ring communications") {
     }
 
       SECTION("Sendreceive") {
+        // HANDSON 7 solution
         int error = MPI_Sendrecv(
           &message, 1, MPI_INT, left, rank,
           &received, 1, MPI_INT, right, right,
